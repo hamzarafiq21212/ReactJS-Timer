@@ -1,22 +1,112 @@
- .timer {
-    margin: 6em auto;
-    width: 300px;
-    height: 300px;
+  .timer {
+   top: 1px;
+    margin: 7em auto;
+    width: 700px;
+    height: 800px;
     color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: first baseline;
   }
-  
+
   h1 {
-    font-size: 8em;
-  }
+    
+    width: 1290px;
+    height: 500px auto;
+    background: rgb(242, 242, 242);
+    border-width: 2px;
+    font-size: 40px;
+    border-style: solid;
+    border-color: rgb(230, 230, 230);
+    border-image: initial;
+    margin: -120px 1px 22px;
+    padding: 40px;
+    
+}
   
+   h2 {
+    font-size: 6em;
+     margin:40px 100px 22px;
+  }
+
+  /* h2 {
+    font-size: 2.5em;
+    position: absolute;
+    left: 150px;
+    top: 2px;
+  } */
+  
+  shortbutton {
+    box-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px inset;
+    width: 180px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    position: relative;
+    text-align: center;
+    background: rgb(43, 166, 203);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(30, 114, 140);
+    border-image: initial;
+    margin: 0px;
+    padding: 10px 20px 11px;
+    text-decoration: none;
+  }
+  longbutton {
+    box-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px inset;
+    width: 180px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    position: relative;
+    text-align: center;
+    background: rgb(43, 166, 203);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(30, 114, 140);
+    border-image: initial;
+    margin: 0px;
+    padding: 10px 20px 11px;
+    text-decoration: none;
+    transition: background-color 0.15s ease-in-out 0s;
+
+}
+pomobutton {
+  box-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px inset;
+  width: 180px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    position: relative;
+    text-align: center;
+    background: rgb(43, 166, 203);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(30, 114, 140);
+    border-image: initial;
+    margin: 0px;
+    padding: 10px 20px 11px;
+    text-decoration: none;
+}
   startbutton {
     background-color: green;
     color: white;
     border: none;
+    cursor: pointer;
     border-radius: 0.4em;
     margin: 0 1em;
     padding: 1em;
@@ -26,6 +116,7 @@
     background-color: red;
     color: white;
     border: none;
+    cursor: pointer;
     border-radius: 0.6em;
     margin: 0 1em;
     padding: 1em;
@@ -35,6 +126,7 @@
     background-color: grey;
     color: white;
     border: none;
+    cursor: pointer;
     border-radius: 0.4em;
     margin: 0 1em;
     padding: 1em;
