@@ -1,7 +1,6 @@
 import './styles.css' 
 import React from 'react' 
 import Modal from 'react-modal'
-// import KeyboardEventHandler from 'react-keyboard-event-handler';
 
 
 class Timer extends React.Component {
@@ -9,18 +8,22 @@ class Timer extends React.Component {
        super(props);
 
      this.state = {
-      play: false,
+
        isActiveSettings: false,
        isButtonDisabled: false,
-       isTimerStop: true,
        isActiveLog: false,
        isActiveFaq: false,
+       isTimerStop: true,
        showButton: true,
-    
+       play: false,
+       pause: true,
+     
           secondsElapsed: 1500000 / 1000,
-          secondsElapsed2: 10000 / 1000,
-          secondsElapsed3: 600000 / 1000,
+          secondsElapsed2: 300000 / 1000,
+          secondsElapsed3:  600000 / 1000
     };
+    this.url = "https://api.coderrocketfuel.com/assets/pomodoro-times-up.mp3";
+    this.audio = new Audio(this.url);
   }
 
 toggle = () => {
@@ -48,7 +51,7 @@ toggle3 = () => {
 
       getMinutes2() {
         return ("0" + Math.floor((this.state.secondsElapsed2 % 3600) / 60)).slice(-2);
-      }
+        }
 
       getSeconds2() {
           return ("0" + (this.state.secondsElapsed2 % 60)).slice(-2)
@@ -61,26 +64,31 @@ toggle3 = () => {
       getSeconds3() {
         return ("0" + (this.state.secondsElapsed3 % 60)).slice(-2);
       }
-     
-    startTime = (event) => {
-      if (this.state.isButtonDisabled) {
-        return; 
-      }
-      this.setState({isButtonDisabled: true});
+
+      startTime = () => {
+        if (!this.state.isButtonDisabled) {
+          this.setState({ isButtonDisabled: true});
         this.countdown = setInterval(() => {
-          this.setState(({ secondsElapsed, secondsElapsed2,secondsElapsed3 }) => ({
-            secondsElapsed: secondsElapsed - 1, secondsElapsed2: secondsElapsed2 - 1,
-            secondsElapsed3: secondsElapsed3 - 1
-          }));
-        }, 1000); 
-      }    
-    
+          if (this.state.secondsElapsed > 0 ) {
+           this.setState (({ secondsElapsed }) => ({secondsElapsed: secondsElapsed - 1})) }else { this.play() };
+
+          if (this.state.secondsElapsed2 > 0 ) { 
+           this.setState (({ secondsElapsed2 }) => ({secondsElapsed2: secondsElapsed2 - 1}))};
+          
+          if (this.state.secondsElapsed3 > 0 ) {
+            this.setState (({ secondsElapsed3 }) => ({secondsElapsed3: secondsElapsed3 - 1})) };
+                  
+      },); 
+      }
+    }
+
+
       resetTime() {
         clearInterval(this.countdown);
         this.setState({
           isTimerStop: false,
           secondsElapsed: 1500000 / 1000,
-          secondsElapsed2: 10000 / 1000,
+          secondsElapsed2: 300000 / 1000,
           secondsElapsed3: 600000 / 1000,
           isButtonDisabled: false
         });
@@ -91,71 +99,84 @@ toggle3 = () => {
         this.setState({ isButtonDisabled: false
         });
     }
-
-      toggleModal0 = () => {
+      
+     toggleModal0 = () => {  //OpenModalSettings
         this.setState({
           isActiveSettings: !this.state.isActiveSettings
         });
     }
-    //CloseModalSettings
-    toggleModal00 = () => {
+    
+     toggleModal00 = () => {  //CloseModalSettings
       this.setState({
         isActiveSettings: false
       });
-  }
-    //OpenModalFaq
+    }
+    
      toggleModal1 = () => {
         this.setState({
           isActiveFaq: !this.state.isActiveFaq
         });
     }
 
-    toggleModal11 = () => {
-      this.setState({
-        isActiveFaq: false
-      });
-  }
-
-    toggleModal2 = () => {
-      this.setState({
-        isActiveLog: !this.state.isActiveLog
-      });
-  }
-
-  toggleModal22 = () => {
-    this.setState({
-      isActiveLog: false
-    });
-}
-
-  componentWillMount() {
-    Modal.setAppElement('body');
-    } 
-
-   TimerStop () {
-        if(this.countdown === 0) {
-        clearInterval(this.countdown);
-        this.stopTime();
-      }
+     toggleModal11 = () => {
+        this.setState({
+         isActiveFaq: false
+        });
     }
 
-    handleKeyDown (event) {
-     if(event.keyCode === 13) { //13 is the enter keycode
-     this.resetTime()
-     } 
-   }
- 
+     toggleModal2 = () => {
+        this.setState({
+        isActiveLog: !this.state.isActiveLog
+        });
+     }
+
+     toggleModal22 = () => {
+        this.setState({
+        isActiveLog: false
+        });
+     }
+
+  componentWillMount() {
+   Modal.setAppElement('body');
+  } 
+
+  componentDidMount() {
+   document.addEventListener("keydown", this.onKeyPressed.bind(this));
+  }
+
+  componentWillUnmount() {
+   document.removeEventListener("keydown", this.onKeyPressed.bind(this));
+  }
+
+onKeyPressed (event) {
+  if(event.altKey && event.keyCode ===  82) { 
+    this.resetTime()
+  } 
+  if(event.altKey && event.keyCode ===  80) { 
+    this.toggle()
+  } 
+  if(event.altKey && event.keyCode ===  83) { 
+    this.toggle2()
+  } 
+  if(event.altKey && event.keyCode ===  76) { 
+    this.toggle3()
+  } 
+  if (event.keyCode ===  32) {
+     if(!this.startTime) {
+      this.resetTime()
+     }else{  this.startTime()
+     }
+    }
+}
+
+play = () => {
+  this.setState({ play: true, pause: false })
+    this.audio.play();
+  }
   render () {
     return (
       <div className='timer'>
-        {this.TimerStop()}
-         <div>
-        <audio className="audio-element">
-          <source src="https://api.coderrocketfuel.com/assets/pomodoro-times-up.mp3"></source>
-        </audio>
-      </div>
 
-          <input  onKeyPress={this.handleKeyDown}  tabIndex="0" />
          <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tomato Timer <navbar>
          <buttons class="button" onClick={this.toggleModal}>Tweet about us</buttons>
          <buttons class="button" onClick={this.toggleModal0}>Settings</buttons>
@@ -236,7 +257,7 @@ toggle3 = () => {
            Q. I've got some feedback. How do I get in touch with you?
         </div>
         <div>
-           A. <a href="mailto:mpcovcd@gmail.com">Email me</a>.
+           A. <a href="hamzarafiq2121@gmail.com">Email me</a>.
         </div>
         <div>
          <br></br>
@@ -314,12 +335,10 @@ toggle3 = () => {
       {this.state.showButton ? <h2>{this.getMinutes()}:{this.getSeconds()}</h2> : null}
       {this.state.showButton2 ? <h2>{this.getMinutes2()}:{this.getSeconds2()}</h2> : null}
       {this.state.showButton3 ? <h2>{this.getMinutes3()}:{this.getSeconds3()}</h2> : null}
-
       </div>
       
        <div>  
-         {this.TimerStop ()}
-          <startbutton class="button" onClick={this.startTime.bind(this)} disabled={this.state.isButtonDisabled}>Start</startbutton>
+          <startbutton class="button" onClick={this.startTime.bind(this)}>Start</startbutton>
           <stopbutton class="button" onClick={this.stopTime.bind(this)}>Stop</stopbutton>
           <resetbutton class="button" onClick={this.resetTime.bind(this)}>Reset</resetbutton>
         </div>
