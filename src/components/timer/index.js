@@ -73,12 +73,12 @@ toggle3 = () => {
            this.setState (({ secondsElapsed }) => ({secondsElapsed: secondsElapsed - 1})) }else { this.play() };
 
           if (this.state.secondsElapsed2 > 0 ) { 
-           this.setState (({ secondsElapsed2 }) => ({secondsElapsed2: secondsElapsed2 - 1}))};
+           this.setState (({ secondsElapsed2 }) => ({secondsElapsed2: secondsElapsed2 - 1}))}else { this.play() };;
           
           if (this.state.secondsElapsed3 > 0 ) {
-            this.setState (({ secondsElapsed3 }) => ({secondsElapsed3: secondsElapsed3 - 1})) };
+            this.setState (({ secondsElapsed3 }) => ({secondsElapsed3: secondsElapsed3 - 1})) }else { this.play() };;
                   
-      },); 
+      } 1000,); 
       }
     }
 
