@@ -1,0 +1,321 @@
+.App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    width: 90%;
+    outline: #F31448;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .timer {
+    margin: 7em auto;
+    width: 700px;
+    height: 50px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ }
+
+ .navbar { 
+   align-content: center;
+ }
+  
+  .modal {
+    background-attachment:scroll;
+    background-clip:border-box;
+    background-color:rgb(255, 255, 255);
+    background-image:none;
+    background-origin:padding-box;
+    background-position-x:0%;
+    background-position-y:0%;
+    background-size:auto;
+    box-shadow:rgba(0, 0, 0, 0.4) 0px 0px 10px 0px;
+    box-sizing:border-box;
+    color:rgb(34, 34, 34);
+    direction:ltr;
+    display:block;
+    font-family:"Helvetica Neue", Helvetica, Helvetica, Arial, sans-serif;
+    font-size:14px;
+    font-style:normal;
+    font-weight:400;
+    height:304px;
+    left:368px;
+    line-height:14px;
+    margin-bottom:0px;
+    margin-left:-294.391px;
+    margin-right:0px;
+    margin-top:0px;
+    opacity:1;
+    padding-bottom:20px;
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:20px;
+    position:absolute;
+    text-size-adjust:100%;
+    top:18px;
+    visibility:visible;
+    width:588.797px;
+    z-index:41;
+}
+
+.modal {
+  width:588.797px;
+  top: 18px;
+  left: 50%;  
+  height: auto;
+}
+
+  h1 {
+    width: 1290px;
+    height: 500px auto;
+    background: rgb(242, 242, 242);
+    border-width: 2px;
+    font-size: 40px;
+    border-style: solid;
+    border-color: rgb(230, 230, 230);
+    border-image: initial;
+    margin: -120px 1px 22px;
+     padding: 40px; 
+}
+
+.title {
+  font-size: 120px;
+  font-style: bold;
+}
+  
+   h2 {
+     font: Helvetica;
+    font-size: 97px;
+    font-weight: bold;
+     font-style: normal;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-block-end: 14px;
+     margin: 5px 1px 22px;
+     padding: 40px; 
+  }
+
+  h3 {
+    font-size: 29px;
+    font-weight: 700px;
+     font-style: normal;
+     margin-block-end: 14px;
+  }
+
+  h4 {
+    margin-left: -160px;
+    font-size: 17px;
+    font-weight: 700px;
+     font-style: normal;
+     line-height: 1px;
+  }
+  
+  shortbutton {
+    box-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px inset;
+    width: 180px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    position: relative;
+    text-align: center;
+    background: rgb(43, 166, 203);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(30, 114, 140);
+    border-image: initial;
+    margin: 0px;
+    padding: 10px 20px 11px;
+    text-decoration: none;
+  }
+  longbutton {
+    box-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px inset;
+    width: 180px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    position: relative;
+    text-align: center;
+    background: rgb(43, 166, 203);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(30, 114, 140);
+    border-image: initial;
+    margin: 0px;
+    padding: 10px 20px 11px;
+    text-decoration: none;
+}
+
+.disc1 {
+  margin-left:20px;
+  text-align: initial;
+}
+.disc2 {
+  margin-left:15px;
+  text-align: initial;
+  line-height: 120%;
+}
+
+.panel {
+  margin-bottom: 10%;
+  width: 290px;
+  margin-left: -80%;
+  margin-top: 8%;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.8;
+    text-align: center;
+    background: rgb(226, 230, 235);
+    border-image: initial;
+    padding: 10px 5px 10px;
+    text-decoration: none;
+}
+
+.panel2 {
+  margin-bottom: 10%;
+  width: 290px;
+  margin-left: 13%;
+  margin-top: -37%;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.8;
+    text-align: center;
+    background: rgb(226, 230, 235);
+    border-image: initial;
+    padding: 10px 5px 10px;
+    text-decoration: none;
+}
+
+.panel3 {
+  margin-bottom: 10%;
+  width: 290px;
+  margin-left: 106%;
+  margin-top: -40.2%;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.8;
+    text-align: center;
+    background: rgb(226, 230, 235);
+    border-image: initial;
+    padding: 10px 5px 10px;
+    text-decoration: none;
+}
+
+a {
+    color: white;
+}
+
+buttons {  
+  float: right;
+  width: 100px;
+    color: white;
+    cursor: pointer;
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    text-align: center;
+    background: rgb(77, 80, 82);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(59, 65, 66);
+    border-image: initial;
+    padding: 10px 5px 10px;
+    text-decoration: none;
+}
+
+pomo {
+  box-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px inset;
+  width: 118px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1;
+    position: relative;
+    text-align: center;
+    background: rgb(43, 166, 203);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(30, 114, 140);
+    border-image: initial;
+    margin: 0px;
+    padding: 10px 20px 11px;
+    text-decoration: none;
+}
+
+pomobutton {
+  box-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px inset;
+  width: 180px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    position: relative;
+    text-align: center;
+    background: rgb(43, 166, 203);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(30, 114, 140);
+    border-image: initial;
+    margin: 0px;
+    padding: 10px 20px 11px;
+    text-decoration: none;
+}
+  startbutton {
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.4em;
+    margin: 0 1em;
+    padding: 1em;
+    display: flex;
+     justify-content: center;
+     align-items: center;
+    display: inline-block;
+  }
+  stopbutton {
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.6em;
+    margin: 0 1em;
+    padding: 1em;
+    display: inline-block;
+  }
+  resetbutton {
+    background-color: grey;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.4em;
+    margin: 0 1em;
+    padding: 1em;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+  }
+  
