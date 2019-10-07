@@ -18,7 +18,7 @@ class App extends React.Component {
       value: 25,
       value2: 5,
       value3: 10,
-      seconds: '00',  seconds2: '00', seconds3: '00',
+      seconds: '00',  seconds2: '00', seconds3: '00', url: '',
       isClicked : false,
     }
     this.baseState = this.state;
@@ -29,10 +29,10 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleChange2 = this.handleChange2.bind(this);
     this.handleChange3 = this.handleChange3.bind(this);
+    this.handleMusic = this.handleMusic.bind(this);
     this.stopTime = this.stopTime.bind(this);
     this.resetinput = this.resetinput.bind(this);
-    this.url = "https://api.coderrocketfuel.com/assets/pomodoro-times-up.mp3";
-    this.url1 = "https://www.tones7.com/media/old_telephone.mp3";
+    this.url = "https://www.tones7.com/media/old_telephone.mp3"
     this.audio = new Audio(this.url);
   } 
 
@@ -124,7 +124,7 @@ class App extends React.Component {
     this.secondsRemaining = time * 60; 
 
 
-    this.intervalHandle2 = setInterval(this.tick2, 1000);
+    this.intervalHandle2 = setInterval(this.tick2);
     let time2 = this.state.value2
     this.secondsRemaining2 = time2 * 60; 
 
@@ -143,15 +143,18 @@ class App extends React.Component {
     clearInterval(this.intervalHandle);
     clearInterval(this.intervalHandle2);
     clearInterval(this.intervalHandle3);
-    this.setState({ isButtonDisabled: false
+    this.setState({ isButtonDisabled: false,
+      pause: true
     });
   }
 
   resetinput ()  {
-    this.setState(this.baseState)
-    clearInterval(this.intervalHandle);
-    clearInterval(this.intervalHandle2);
-    clearInterval(this.intervalHandle3);
+    this.setState(this.baseState);
+    // clearInterval(this.intervalHandle);
+    // clearInterval(this.intervalHandle2);
+    // clearInterval(this.intervalHandle3);
+
+
     this.setState({  isButtonDisabled: false
     });
   }
@@ -195,22 +198,36 @@ class App extends React.Component {
     Modal.setAppElement('body');
    } 
 
+   handleMusic(event) {
+    console.log(event.target.value)
+    this.setState({
+        url: event.target.value,
+    })
+
+    this.audio = new Audio(event.target.value);
+  }
+
     handleChange(event) {
+      // console.log(event.target.value,this.state.value,this.baseState.value)
+      
       this.setState({
-        value: event.target.value
+        value: event.target.value,
       })
+      this.baseState.value=event.target.value;
     }
 
     handleChange2(event) {
       this.setState({
         value2: event.target.value
       })
+      this.baseState.value2=event.target.value;
     }
 
     handleChange3(event) {
       this.setState({
         value3: event.target.value
       })
+      this.baseState.value3=event.target.value;
     }
 
     handlesChange = () => {
@@ -218,15 +235,12 @@ class App extends React.Component {
       })
     }
 
-    handlesChange2 = (event) => {
-      this.setState({ url: event.target.url1
-      })
+    Reset  = () => {
+      this.basestate = this.state;
     }
 
-   
-
     play = () => {
-      this.setState({ play: true, pause: false })
+      this.setState({ play: true})
         this.audio.play();
       }
 
@@ -372,12 +386,12 @@ class App extends React.Component {
           <input class="small-input" type="number" id="pomodoro_goal" step="1" min="1" name="pomodoro_goal">
           </input></p>
           <h3>Select Sound</h3>
-            <select id="alertoption" size="5">
-               <option url="https://www.tones7.com/media/old_telephone.mp3" onChange = {this.handlesChange2}>80s Alarm</option>
-               <option url="https://www.tones7.com/media/old_telephone.mp3" value="alarmclock">Alarm Clock</option>
-               <option value="alarmwatch">Wristwatch Alarm</option>
-               <option value="ding">Elevator Ding</option>
-               <option value="doorbell">Door Bell</option>
+            <select id="alertoption" onChange = {this.handleMusic} size="5">
+               <option value="https://api.coderrocketfuel.com/assets/pomodoro-times-up.mp3" >80s Alarm</option>
+               <option value="https://www.tones7.com/media/old_telephone.mp3" >Alarm Clock</option>
+               <option value="https://www.tones7.com/media/rock_sms.mp3">Wristwatch Alarm</option>
+               <option value="https://www.tones7.com/media/nokia_scratch_sms.mp3">Elevator Ding</option>
+               <option value="https://www.tones7.com/media/Perfect_Ring_Tone.mp3">Door Bell</option>
              </select>
           <h3>Select Volume</h3>
              <select id="volume" size="5">
@@ -401,9 +415,9 @@ class App extends React.Component {
               <label for="time_longbreak">Long Break</label>
               <input type="number" value = {this.state.value3} onChange={this.handleChange3} required />
               </div>
-              <button class="button" onClick={this.handlesChange}>Start</button>
-              <button type="button" class="button" onclick="resetSETTINGS();">Reset</button>
-              <button  onclick="soundTEST();">Sound Test</button>
+              <button class="button" onClick={this.handlesChange}>Save</button>
+              <button class="button" onclick={this.Reset}>Reset</button>
+              <button  onclick={this.play}>Sound Test</button>
               </div>
               </div> </div>
             </Modal>
@@ -470,32 +484,6 @@ class Timer extends React.Component {
       showButton: true
     }
   }
-
-  // startCountDown2() {
-  //   if (this.state.isButtonDisabled === false)
-  //    {
-  //     this.setState({ isButtonDisabled: true
-  //   });
-  
-  //   this.intervalHandle = setInterval(this.tick);
-  //   let time = this.state.value
-  //   this.secondsRemaining = time * 60; 
-
-
-  //     this.intervalHandle2 = setInterval(this.tick2);
-  //     let time2 = this.state.value2
-  //     this.secondsRemaining2 = time2 * 60; 
-
-   
-  //   this.intervalHandle3 = setInterval(this.tick3);
-  //   let time3 = this.state.value3
-  //   this.secondsRemaining3 = time3 * 60; 
-
-  //   this.setState({
-  //     isClicked : true
-  //   })
-  //  }
-  //  }
     
    stopTime() {
     clearInterval(this.intervalHandle);
@@ -506,19 +494,22 @@ class Timer extends React.Component {
   }
 
   resetinput ()  {
-    this.setState(this.baseState)
-    this.stopTime();
+    this.baseState = this.setState
+    clearInterval(this.intervalHandle);
+    clearInterval(this.intervalHandle2);
+    clearInterval(this.intervalHandle3);
     this.setState({  isButtonDisabled: false
     });
   }
 
   toggle = () => {
-  this.resetinput()
+    this.resetinput()
     this.setState({ showButton: true, showButton2: false, showButton3: false });
   };
 
   toggle2 = () => {
     this.resetinput()
+    this.baseState = this.setState
     this.setState({ showButton: false, showButton2: true, showButton3: false, });
   };
   
